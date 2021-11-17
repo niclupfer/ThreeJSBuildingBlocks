@@ -1,4 +1,4 @@
-# ThreeJSBuildingBlocks
+# Three JS Building Blocks
 
 Check it out here:
 https://niclupfer.github.io/ThreeJSBuildingBlocks/
