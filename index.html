@@ -1,0 +1,151 @@
+<html>
+<head>
+	<title>ThreeJS Demo</title>
+
+	<script src="https://threejs.org/build/three.js"></script>
+	<script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
+	<script src="https://threejs.org/examples/js/objects/Reflector.js"></script>
+
+	<script src="https://threejs.org/examples/js/postprocessing/EffectComposer.js"></script>
+	<script src="https://threejs.org/examples/js/postprocessing/RenderPass.js"></script>
+	<script src="https://threejs.org/examples/js/postprocessing/ShaderPass.js"></script>
+	<script src="https://threejs.org/examples/js/shaders/CopyShader.js"></script>
+	<script src="https://threejs.org/examples/js/shaders/FXAAShader.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
+
+	<script src="js/Space.js"></script>
+	<script src="js/Cam.js"></script>
+	<script src="js/Tools.js"></script>
+	<script src="js/Blocky.js"></script>
+
+	<link rel="stylesheet" href="main.css"></link>		
+</head>
+<body>
+	<div id="mainContainer">
+		<div class="side-panel">
+			<div id="title">
+				<h2>
+					ThreeJS Building Blocks
+				</h2>
+			</div>
+			<div id="sceneControls">
+
+				<div class="button-group">
+					<label class="toggle">
+						<input type="checkbox" name="gridSnap" checked="checked" onchange="Tools.update()">
+						Snap to Grid
+					</label>
+
+					<label class="toggle">
+						<input type="checkbox" name="mirrorToggle" checked="checked" onchange="Tools.update()">
+						Mirror Floor
+					</label>
+				</div>
+				<div class="button-group">
+					<button onClick="Space.clearSpace()">Clear Scene</button>
+				</div>
+			</div>
+			<h4>
+				Selected: <div id="selectedInfo"></div>
+			</h4>
+			<div id="selectionTools">			
+				<div class="button-group">
+					<button onClick="Tools.scoot(0, 1)">Forward</button>
+					<button onClick="Tools.scoot(0, -1)">Backward</button>
+					<button onClick="Tools.scoot(-1, 0)">Left</button>
+					<button onClick="Tools.scoot(1, 0)">Right</button>
+				</div>
+
+				<div class="button-group">
+					<button onClick="Tools.rotate(-1)">Rotate right</button>
+					<button onClick="Tools.rotate(1)">Rotate left</button>
+				</div>
+				
+				<div class="button-group">
+					<button onClick="Tools.remove()">Remove</button>
+				</div>			
+			</div>
+
+			<h4>Color</h4>
+			<div id="palette">				
+				<label class="list-selector" style="background-color: #ff6663;">
+					<input type="radio" name="colorList" value="red" onchange="Tools.update()" checked="checked"/>
+					Red
+				</label>
+
+				<label class="list-selector" style="background-color: #feb144;">
+					<input type="radio" name="colorList" value="orange" onchange="Tools.update()"/>
+					Orange
+				</label>
+
+				<label class="list-selector" style="background-color: #fdfd97;">
+					<input type="radio" name="colorList" value="yellow" onchange="Tools.update()"/>
+					Yellow
+				</label>
+
+				<label class="list-selector" style="background-color: #9ee09e;">
+					<input type="radio" name="colorList" value="green" onchange="Tools.update()"/>
+					Green
+				</label>
+
+				<label class="list-selector" style="background-color: #9ec1cf;">
+					<input type="radio" name="colorList" value="blue" onchange="Tools.update()"/>
+					Blue
+				</label>
+
+				<label class="list-selector" style="background-color: #cc99c9;">
+					<input type="radio" name="colorList" value="purple" onchange="Tools.update()"/>
+					Purple
+				</label>
+			</div>
+			
+			<h4>Shape</h4>
+			<div id="shapeSelector">
+				<label class="list-selector">
+					<input type="radio" name="shapeList" value="none" onchange="Tools.update()">
+					None
+				</label>
+
+				<label class="list-selector">
+					<input type="radio" name="shapeList" value="cube" onchange="Tools.update()" checked="checked">
+					Cube
+				</label>
+
+				<label class="list-selector">
+					<input type="radio" name="shapeList" value="cone" onchange="Tools.update()">
+					Cone
+				</label>
+
+				<label class="list-selector">
+					<input type="radio" name="shapeList" value="sphere" onchange="Tools.update()">
+					Sphere
+				</label>
+
+				<label class="list-selector">
+					<input type="radio" name="shapeList" value="cylinder" onchange="Tools.update()">
+					Cylinder
+				</label>
+
+				<label class="list-selector">
+					<input type="radio" name="shapeList" value="icos" onchange="Tools.update()">
+					Icosahedron
+				</label>
+			</div>
+			<div id="footer">Made by <a href="https://twitter.com/niclupfer" target="_blank">Nic Lupfer</a>, 2021</div>
+		</div>
+		<div id="mainCanvas">
+			<div id="camControls">
+				Camera Views
+				<button onClick="Cam.setView(Cam.Y_VIEW)">Top down</button>
+				<button onClick="Cam.setView(Cam.Z_VIEW)">Straight on</button>
+				<button onClick="Cam.setView(Cam.X_VIEW)">Side view</button>				
+				<button onClick="Cam.setView()">Reset view</button>
+			</div>
+			<div id="renderingCanvas">
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>
